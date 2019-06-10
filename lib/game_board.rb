@@ -1,60 +1,46 @@
 class GameBoard
 
     attr_reader :board
-
     def initialize
-
-        @board = [[nil,nil,nil], [nil, nil, nil], [nil,nil,nil]]
-        
+        @board = Array.new(3){Array.new(3)}
+        board_layout(@board)
         @turn = 0
-
         @move_animation = "X"
-
+    end
+    
+    def board_layout (board)
+        puts " #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]} "
+        
+        puts "------------" 
+        puts " #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]} "
+        
+        puts "------------"  
+        puts " #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]} "
     end
 
-
-    def placing_action_in_board(player_action)
-        
+    def move(player_action)
        #example input = > player_action = [1,1]
-
         if !position_taken(player_action)
-
             @board[player_action[0]][player_action[1]] = @move_animation
             animation_current_turn
-
-            print @board
+            print board_layout(@board)
             print "\n"
-    
-
         else
             return print "Taken. Take another position. \n"
         end
-            
-
-
     end
 
     private 
-
     def animation_current_turn
-
         @turn%2==0? @move_animation = "O": @move_animation= "X"
-
         @turn += 1
-
     end
 
-
     def position_taken(player_action)
-
         if @board[player_action[0]][player_action[1]] != nil
             return true
         end
-
     end
-
-
-
 
 end
 
