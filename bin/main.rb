@@ -1,4 +1,4 @@
-DIRECTORY = "BRIGHT"
+DIRECTORY = "SAMUEL"
 
 if DIRECTORY == "BRIGHT"
     require '/Users/macbright/Desktop/tic-tac-toe/lib/player.rb'
@@ -26,6 +26,7 @@ class GameInterface
         @player1 = Player.new()
         @player2 = Player.new()
         @current_player = @player1
+        @player_number = "play1"
         @game_stops = false
         @count = 0
         @game_finish = 0
@@ -33,17 +34,12 @@ class GameInterface
     end
     def play_game
         until @game_stops == true
+            which_players_turn
             @current_player.ask_for_move
-            print "\n"
-            if @board_this_game.move(@current_player.coordinates) == "fail"
-                @count -=1
-            else
-                @board_this_game.move(@current_player.coordinates)
-            end
+            move_and_check
             win_game
             check_draw
             switch_player
-
         end
         print "finished"
     end
@@ -102,11 +98,29 @@ class GameInterface
     end
 
     def check_draw
-        if @count == 9
+        if @count == 8
             puts "It's a draw"
             game_stops
+        else
+            @count += 1
         end
     end
+
+    def move_and_check
+        print "\n"
+        if @board_this_game.move(@current_player.coordinates) == "fail"
+            @count -=1
+            switch_player
+            puts "\n That number is already taken! \n"
+            puts " \n"
+            @board_this_game.board_layout(@board_this_game.board)
+            puts "\n Take another one... \n"
+            
+        else
+            @board_this_game.move(@current_player.coordinates)
+        end
+    end
+
     def play_again
         puts "\n do you want to play again (Y/N)"
         answer = gets.chomp().downcase
@@ -129,17 +143,23 @@ class GameInterface
         else
             if @current_player == @player1
                 @current_player = @player2
-                 @count += 1
-                 puts @count
-                puts "player2 you can make your move now"
+                @player_number = "play2"
             else
                 @current_player = @player1
-                 @count += 1
-                puts "#{@count} the\n"
-                puts "player1 now is your turn to move"
+                @player_number = "play1"
+
             end
         end
           
+    end
+
+    def which_players_turn
+
+        if @player_number == "play1"
+            print "\n Player1 is your turn. \n"
+        elsif @player_number == "play2"
+            print "\n Player2 is your turn \n"
+        end
     end
 
 end

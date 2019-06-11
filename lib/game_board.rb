@@ -10,7 +10,7 @@ class GameBoard
         @move_animation = "X"
     end
     
-    def board_layout (board)
+    def board_layout(board)
         puts " #{board[0][0]|| 1}  |  #{board[0][1] || 2}  |  #{board[0][2] || 3} "  
         puts "----+-----+----" 
         puts " #{board[1][0] || 4}  |  #{board[1][1] ||5}  |  #{board[1][2] ||6} " 
@@ -26,7 +26,6 @@ class GameBoard
             print board_layout(@board)
             print "\n"
         else
-            print "Taken. Take another position. \n"
             return "fail"
         end
     end
