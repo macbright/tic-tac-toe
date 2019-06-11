@@ -1,6 +1,7 @@
 class GameBoard
 
     attr_reader :board
+
     def initialize
         @board = Array.new(3){Array.new(3)}
         board_layout(@board)
@@ -9,11 +10,9 @@ class GameBoard
     end
     
     def board_layout (board)
-        puts " #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]} "
-        
+        puts " #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]} "  
         puts "------------" 
-        puts " #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]} "
-        
+        puts " #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]} " 
         puts "------------"  
         puts " #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]} "
     end
@@ -43,21 +42,4 @@ class GameBoard
     end
 
 end
-
-
-
-## testing
-proba = GameBoard.new
-puts proba.board
-proba.move([1,1])
-
-proba.move([1,2])
-
-proba.move([2,0])
-proba.move([2,1])
-proba.move([2,1])
-proba.move([2,2])
-proba.move([2,2])
-
-proba.move([0,2])
 
