@@ -1,8 +1,8 @@
 class Player
 
-    def initialize(move_animation)
+    def initialize()
 
-        @move_animation = move_animation
+        # @move_animation = move_animation
         
     end
 
