@@ -1,6 +1,7 @@
 class GameBoard
 
     attr_reader :board
+    @@num = [1,2,3,4,5,6,7,8,9]
 
     def initialize
         @board = Array.new(3){Array.new(3)}
@@ -10,11 +11,11 @@ class GameBoard
     end
     
     def board_layout (board)
-        puts " #{board[0][0]}  |  #{board[0][1]}  |  #{board[0][2]} "  
-        puts "------------" 
-        puts " #{board[1][0]}  |  #{board[1][1]}  |  #{board[1][2]} " 
-        puts "------------"  
-        puts " #{board[2][0]}  |  #{board[2][1]}  |  #{board[2][2]} "
+        puts " #{board[0][0]|| 1}  |  #{board[0][1] || 2}  |  #{board[0][2] || 3} "  
+        puts "----+-----+----" 
+        puts " #{board[1][0] || 4}  |  #{board[1][1] ||5}  |  #{board[1][2] ||6} " 
+        puts "----+-----+----"  
+        puts " #{board[2][0] ||7}  |  #{board[2][1] ||8}  |  #{board[2][2] ||9} "
     end
 
     def move(player_action)
@@ -25,8 +26,14 @@ class GameBoard
             print board_layout(@board)
             print "\n"
         else
-            return print "Taken. Take another position. \n"
+            print "Taken. Take another position. \n"
+            return "fail"
         end
+    end
+
+    def reset_board 
+        @board = Array.new(3){Array.new(3)}
+        board_layout(@board)
     end
 
     private 
