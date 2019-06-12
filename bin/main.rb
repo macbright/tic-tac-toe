@@ -124,8 +124,9 @@ class GameInterface
             @game_finish = 0
             @no_draw = 0
             @win_already = 0
+            @current_player = @player1
             @game_stops = false
-            @board_this_game.reset_board
+            @board_this_game =  @board_this_game.reset_board
             self.play_game
         else
             puts "\n"

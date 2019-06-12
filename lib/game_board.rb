@@ -32,8 +32,7 @@ class GameBoard
     end
 
     def reset_board 
-        @board = Array.new(3){Array.new(3)}
-        board_layout(@board)
+        GameBoard.new()
     end
 
     private 
