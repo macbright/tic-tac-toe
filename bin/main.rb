@@ -25,6 +25,7 @@ class GameInterface
         @game_stops = false
         @count = 0
         @game_finish = 0
+        @no_draw = 0
     end
     def play_game
        
@@ -50,9 +51,13 @@ class GameInterface
             if board[i][0] == "X" && board[i][1]  == "X" && board[i][2] == "X"
                 winner_text(@player_number)
                 game_stops
+                @no_draw = 1 if @count == 8
+
             elsif board[i][0] == "O" && board[i][1]  == "O" && board[i][2] == "O"
                 winner_text(@player_number)
                 game_stops
+                @no_draw = 1 if @count == 8
+
             end
             i += 1
         end
@@ -63,9 +68,13 @@ class GameInterface
             if board[0][i] == "X" && board[1][i]  == "X" && board[2][i] == "X"
                 winner_text(@player_number)
                 game_stops
+                @no_draw = 1 if @count == 8
+
             elsif  board[0][i] == "O" &&  board[1][i]  == "O" && board[2][i] == "O"
                 winner_text(@player_number)
                 game_stops         
+                @no_draw = 1 if @count == 8
+
             end
         end
     end
@@ -74,15 +83,19 @@ class GameInterface
         if board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"
             winner_text(@player_number)
             game_stops
+            @no_draw = 1 if @count == 8
         elsif board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"
             winner_text(@player_number)
             game_stops
+            @no_draw = 1 if @count == 8
         elsif board[2][0] == "X" && board[1][1] == "X" && board[0][2] == "X"
             winner_text(@player_number)
             game_stops
+            @no_draw = 1 if @count == 8
         elsif board[2][0] == "O" && board[1][1] == "O" && board[0][2] == "O"
             winner_text(@player_number)
             game_stops
+            @no_draw = 1 if @count == 8
         end
     end
 
@@ -93,7 +106,7 @@ class GameInterface
     end
 
     def check_draw
-        if @count == 8
+        if @count == 8 && @no_draw == 0 
             draw_text
             game_stops
         else
@@ -123,6 +136,7 @@ class GameInterface
             # @board_this_game = GameBoard.new()
             @count = 0
             @game_finish = 0
+            @no_draw = 0
             @game_stops = false
             @board_this_game.reset_board
             self.play_game
