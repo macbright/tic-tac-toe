@@ -1,12 +1,6 @@
-DIRECTORY = "SAMUEL"
 
-if DIRECTORY == "BRIGHT"
-    require '/Users/macbright/Desktop/tic-tac-toe/lib/player.rb'
-    require '/Users/macbright/Desktop/tic-tac-toe/lib/game_board.rb'
-elsif DIRECTORY == "SAMUEL"
-    require '/home/samuel/Desktop/Microverse/Ruby/Projects/tic-tac-toe/lib/game_board.rb'
-    require '/home/samuel/Desktop/Microverse/Ruby/Projects/tic-tac-toe/lib/player.rb'
-end
+require_relative '../lib/game_board.rb'
+require_relative '../lib/player.rb'
 
 class GameInterface
     # WIN_COMBINATION = [
@@ -19,20 +13,21 @@ class GameInterface
     #     [board[0][0], board[1][2], board[2][1]]
     #     [board[0][2], board[1][2], board[2][0]]
     # ]
-    
+
     def initialize
         print "\n Starting a new game \n \n"
+        game_instruction
         @board_this_game = GameBoard.new()
         @player1 = Player.new()
         @player2 = Player.new()
         @current_player = @player1
-        @player_number = "play1"
+        @player_number = "player1"
         @game_stops = false
         @count = 0
         @game_finish = 0
-
     end
     def play_game
+       
         until @game_stops == true
             which_players_turn
             @current_player.ask_for_move
@@ -53,10 +48,10 @@ class GameInterface
         i = 0
         3.times do 
             if board[i][0] == "X" && board[i][1]  == "X" && board[i][2] == "X"
-                print "Hurray!!! player1 won the game"
+                print "******* HURRAY!!*** #{@player_number} won the game*******."
                 game_stops
             elsif board[i][0] == "O" && board[i][1]  == "O" && board[i][2] == "O"
-                print "Congrats player2, you won"
+                print "******* HURRAY!!*** #{@player_number} won the game*******."
                 game_stops
             end
             i += 1
@@ -66,10 +61,10 @@ class GameInterface
     def check_vertical_win(board)    
         for i in 0..3
             if board[0][i] == "X" && board[1][i]  == "X" && board[2][i] == "X"
-                print "Hurray!!! player1 won the game"
+                print "******* HURRAY!!*** #{@player_number} won the game!*******."
                 game_stops
             elsif  board[0][i] == "O" &&  board[1][i]  == "O" && board[2][i] == "O"
-                print "Congrats player2, you won"
+                print "******* HURRAY!!*** #{@player_number} won the game!*******."
                 game_stops         
             end
         end
@@ -77,16 +72,16 @@ class GameInterface
 
     def check_diagonal_win(board)     
         if board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"
-            print "Hurray!!! player1 won the game"
+            print "******* HURRAY!!*** #{@player_number} won the game!*******."
             game_stops
         elsif board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"
-            print "Congrats player2, you won"
+            print "******* HURRAY!!*** #{@player_number} won the game!*******."
             game_stops
         elsif board[2][0] == "X" && board[1][1] == "X" && board[0][2] == "X"
-            print "Hurray!!! player1 won the game"
+            print "******* HURRAY!!*** #{@player_number} won the game!*******."
             game_stops
         elsif board[2][0] == "O" && board[1][1] == "O" && board[0][2] == "O"
-            print "Congrats player2, you won"
+            print "******* HURRAY!!*** #{@player_number} won the game!******."
             game_stops
         end
     end
@@ -122,9 +117,9 @@ class GameInterface
     end
 
     def play_again
-        puts "\n do you want to play again (Y/N)"
+        puts "\n do you want to play again 'yes' to play again or any key to exit"
         answer = gets.chomp().downcase
-        if answer == "y"
+        if answer == "yes"
             # @board_this_game = GameBoard.new()
             @count = 0
             @game_finish = 0
@@ -132,7 +127,8 @@ class GameInterface
             @board_this_game.reset_board
             self.play_game
         else
-            puts "\n thank you for playing\n"
+            puts "\n"
+            puts "\n *********Thank you for playing**********\n"
         end
         
     end
@@ -143,10 +139,10 @@ class GameInterface
         else
             if @current_player == @player1
                 @current_player = @player2
-                @player_number = "play2"
+                @player_number = "player2"
             else
                 @current_player = @player1
-                @player_number = "play1"
+                @player_number = "player1"
 
             end
         end
@@ -155,11 +151,28 @@ class GameInterface
 
     def which_players_turn
 
-        if @player_number == "play1"
+        if @player_number == "player1"
             print "\n Player1 is your turn. \n"
-        elsif @player_number == "play2"
+        elsif @player_number == "player2"
             print "\n Player2 is your turn \n"
         end
+    end
+
+    def game_instruction
+        puts "***************************************"
+        puts "*** Welcome To My Tic-Tac-Toe Game! ***"
+        puts "***************************************"
+        puts "======================================="
+        puts "**************** RULES ****************"
+        puts "Two players will take turns to mark the"
+        puts "spaces on a 3x3 grid. The player who   "
+        puts "succeeds in placing 3 of their marks in"
+        puts "a horizontal, vertical, or diagonal row"
+        puts "wins the game. When there are no more  "
+        puts "spaces left to mark, it is consider a  "
+        puts "draw. To place a mark on the grid, type"
+        puts "the number on the space you would like "
+        puts "to mark! As shown below. Good luck! \n "
     end
 
 end
