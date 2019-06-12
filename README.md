@@ -2,6 +2,15 @@
 Tic-tac-toe or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
 
 # Game instructions
+  
+  1) Two players will take turns to mark the spaces on a 3x3 grid. 
+  
+  2) The player who succeeds in placing 3 of their marks in a horizontal, vertical, or diagonal row wins the game. 
+  
+  3) When there are no more spaces left to mark, it is consider a draw. 
+  
+  4) To place a mark on the grid, type the number on the space you would like to mark! 
+     Good luck!
 
 
 ### Prerequisites
