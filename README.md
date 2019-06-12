@@ -1,53 +1,16 @@
-# Tic Tac Toe Game implementation with Ruby
-
-One Paragraph of project description goes here
-
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+# Tic Tac Toe 
+Tic-tac-toe or Xs and Os is a paper-and-pencil game for two players, X and O, who take turns marking the spaces in a 3×3 grid. The player who succeeds in placing three of their marks in a horizontal, vertical, or diagonal row wins the game.
 
 ### Prerequisites
-
-What things you need to install the software and how to install them
-
-```
-Give examples
-```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
-
+You will need to have Ruby installed
 
 ## Deployment
-
-Explain what these tests test and why
-
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+Clone the repository and execute the main file with your terminal 
 
 ```
-Give an example
+ruby main.rb
 ```
+
 ## Built With
 
 * [Ruby](https://www.ruby-lang.org/en/news/2018/12/25/ruby-2-6-0-released/)
@@ -56,8 +19,9 @@ Give an example
 
 ## Authors
 
-* **macbright** - @macbright - [macbright](https://github.com/macbright)
-* **Samuel García Companys** - @samgaco - [samgaco](https://github.com/samgaco)
+* **Bright Okike** - @macbright - [macbright](https://github.com/macbright) - brightokike@gmail.com
+
+* **Samuel García Companys** - @samgaco - [samgaco](https://github.com/samgaco) - samuelgarciacompanys@gmail.com
 
 
 ## License
