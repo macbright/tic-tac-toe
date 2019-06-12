@@ -36,7 +36,7 @@ class Player
 
     def set_mark
         puts "\n"
-        puts "\n Which mark will you like to use ? select either:
+        puts "\n Player1, Which mark will you like to use ? select one of these:
          1 = 'X' 
          2 = 'O'"
         print "\nPlayer1 choose a mark:  "
