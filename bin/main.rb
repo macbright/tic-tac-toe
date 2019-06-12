@@ -26,7 +26,6 @@ class GameInterface
             check_draw
             switch_player
         end
-        print "finished"
     end
 
     def win_game
@@ -125,6 +124,7 @@ class GameInterface
             @no_draw = 0
             @win_already = 0
             @current_player = @player1
+            @player_number = "player1"
             @game_stops = false
             @board_this_game =  @board_this_game.reset_board
             self.play_game
@@ -137,7 +137,7 @@ class GameInterface
     end
 
     def switch_player
-        if @count == 9 || @game_finish ==1 
+        if @count == 8 || @game_finish ==1 
             play_again
         else
             if @current_player == @player1
