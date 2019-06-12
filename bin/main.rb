@@ -48,10 +48,10 @@ class GameInterface
         i = 0
         3.times do 
             if board[i][0] == "X" && board[i][1]  == "X" && board[i][2] == "X"
-                print "******* HURRAY!!*** #{@player_number} won the game*******."
+                winner_text(@player_number)
                 game_stops
             elsif board[i][0] == "O" && board[i][1]  == "O" && board[i][2] == "O"
-                print "******* HURRAY!!*** #{@player_number} won the game*******."
+                winner_text(@player_number)
                 game_stops
             end
             i += 1
@@ -61,10 +61,10 @@ class GameInterface
     def check_vertical_win(board)    
         for i in 0..3
             if board[0][i] == "X" && board[1][i]  == "X" && board[2][i] == "X"
-                print "******* HURRAY!!*** #{@player_number} won the game!*******."
+                winner_text(@player_number)
                 game_stops
             elsif  board[0][i] == "O" &&  board[1][i]  == "O" && board[2][i] == "O"
-                print "******* HURRAY!!*** #{@player_number} won the game!*******."
+                winner_text(@player_number)
                 game_stops         
             end
         end
@@ -72,16 +72,16 @@ class GameInterface
 
     def check_diagonal_win(board)     
         if board[0][0] == "X" && board[1][1] == "X" && board[2][2] == "X"
-            print "******* HURRAY!!*** #{@player_number} won the game!*******."
+            winner_text(@player_number)
             game_stops
         elsif board[0][0] == "O" && board[1][1] == "O" && board[2][2] == "O"
-            print "******* HURRAY!!*** #{@player_number} won the game!*******."
+            winner_text(@player_number)
             game_stops
         elsif board[2][0] == "X" && board[1][1] == "X" && board[0][2] == "X"
-            print "******* HURRAY!!*** #{@player_number} won the game!*******."
+            winner_text(@player_number)
             game_stops
         elsif board[2][0] == "O" && board[1][1] == "O" && board[0][2] == "O"
-            print "******* HURRAY!!*** #{@player_number} won the game!******."
+            winner_text(@player_number)
             game_stops
         end
     end
@@ -94,7 +94,7 @@ class GameInterface
 
     def check_draw
         if @count == 8
-            puts "It's a draw"
+            draw_text
             game_stops
         else
             @count += 1
@@ -129,6 +129,7 @@ class GameInterface
         else
             puts "\n"
             puts "\n *********Thank you for playing**********\n"
+            puts "\n"
         end
         
     end
@@ -174,6 +175,24 @@ class GameInterface
         puts "the number on the space you would like "
         puts "to mark! As shown below. Good luck! \n "
     end
+
+    private
+    def winner_text(name)
+    puts "\n"
+    puts '*************************************************'
+    puts '**************** CONGRATULATIONS ****************'
+    puts '*************************************************'
+    puts "**************** #{name} Wins! *****************"
+    puts '*************************************************'
+  end
+  def draw_text
+    puts "\n"
+    puts '*************************************************'
+    puts '****************    GAME OVER    ****************'
+    puts '*************************************************'
+    puts "****************  It's a Draw!  *****************"
+    puts '*************************************************'
+  end
 
 end
 
