@@ -3,7 +3,6 @@ require_relative 'player.rb'
 class GameBoard
 
     attr_reader :board
-    @@num = [1,2,3,4,5,6,7,8,9]
 
     def initialize
         @board = Array.new(3){Array.new(3)}
@@ -22,7 +21,6 @@ class GameBoard
     end
 
     def move(player_action)
-       #example input = > player_action = [1,1]
         if !position_taken(player_action)
             @board[player_action[0]][player_action[1]] = @move_animation
             animation_current_turn
@@ -33,15 +31,14 @@ class GameBoard
         end
     end
 
-    
     def reset_board 
         @board = Array.new(3){Array.new(3)}
         board_layout(@board)
     end
 
     private 
-    def animation_current_turn
 
+    def animation_current_turn
         @move_animation == "X" ?  @move_animation = "O" : @move_animation = "X" if @turn%2==0 
         @turn = 2
     end

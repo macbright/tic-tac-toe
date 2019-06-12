@@ -3,10 +3,9 @@ class Player
     attr_reader :coordinates
 
     def initialize
-        @coordinates = [nil,nil]
-        # @move_animation = move_animation
-        
+        @coordinates = [nil,nil]        
     end
+    
     private
     def our_hash
         new_hash = {

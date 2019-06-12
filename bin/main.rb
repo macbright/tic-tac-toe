@@ -1,19 +1,7 @@
-
 require_relative '../lib/game_board.rb'
 require_relative '../lib/player.rb'
 
 class GameInterface
-    # WIN_COMBINATION = [
-    #     [board[0][0], board[0][1], board[0][2]]
-    #     [board[1][0], board[1][1], board[1][2]]
-    #     [board[2][0], board[2][1], board[2][2]]
-    #     [board[0][0], board[1][0], board[2][0]]
-    #     [board[0][1], board[1][1], board[2][1]]
-    #     [board[0][2], board[1][2], board[2][1]]
-    #     [board[0][0], board[1][2], board[2][1]]
-    #     [board[0][2], board[1][2], board[2][0]]
-    # ]
-
     def initialize
         print "\n Starting a new game \n \n"
         game_instruction
@@ -26,9 +14,10 @@ class GameInterface
         @count = 0
         @game_finish = 0
         @no_draw = 0
+        @win_already = 0
     end
+
     def play_game
-       
         until @game_stops == true
             which_players_turn
             @current_player.ask_for_move
@@ -39,10 +28,11 @@ class GameInterface
         end
         print "finished"
     end
+
     def win_game
-        check_horizontal_win(@board_this_game.board)
-        check_vertical_win(@board_this_game.board)
-        check_diagonal_win(@board_this_game.board)
+        check_horizontal_win(@board_this_game.board) if @win_already == 0
+        check_vertical_win(@board_this_game.board) if @win_already == 0
+        check_diagonal_win(@board_this_game.board) if @win_already == 0
     end
 
     def check_horizontal_win(board)
@@ -52,12 +42,10 @@ class GameInterface
                 winner_text(@player_number)
                 game_stops
                 @no_draw = 1 if @count == 8
-
             elsif board[i][0] == "O" && board[i][1]  == "O" && board[i][2] == "O"
                 winner_text(@player_number)
                 game_stops
                 @no_draw = 1 if @count == 8
-
             end
             i += 1
         end
@@ -69,12 +57,10 @@ class GameInterface
                 winner_text(@player_number)
                 game_stops
                 @no_draw = 1 if @count == 8
-
             elsif  board[0][i] == "O" &&  board[1][i]  == "O" && board[2][i] == "O"
                 winner_text(@player_number)
                 game_stops         
                 @no_draw = 1 if @count == 8
-
             end
         end
     end
@@ -102,6 +88,7 @@ class GameInterface
     def game_stops
         @game_finish = 1
         @game_stops = true
+        @win_already = 1
         print "\n Game is finished! \n"
     end
 
@@ -122,8 +109,7 @@ class GameInterface
             puts "\n That number is already taken! \n"
             puts " \n"
             @board_this_game.board_layout(@board_this_game.board)
-            puts "\n Take another one... \n"
-            
+            puts "\n Take another one... \n"   
         else
             @board_this_game.move(@current_player.coordinates)
         end
@@ -137,6 +123,7 @@ class GameInterface
             @count = 0
             @game_finish = 0
             @no_draw = 0
+            @win_already = 0
             @game_stops = false
             @board_this_game.reset_board
             self.play_game
@@ -158,14 +145,11 @@ class GameInterface
             else
                 @current_player = @player1
                 @player_number = "player1"
-
             end
-        end
-          
+        end        
     end
 
     def which_players_turn
-
         if @player_number == "player1"
             print "\n Player1 is your turn. \n"
         elsif @player_number == "player2"
@@ -192,21 +176,22 @@ class GameInterface
 
     private
     def winner_text(name)
-    puts "\n"
-    puts '*************************************************'
-    puts '**************** CONGRATULATIONS ****************'
-    puts '*************************************************'
-    puts "**************** #{name} Wins! *****************"
-    puts '*************************************************'
-  end
-  def draw_text
-    puts "\n"
-    puts '*************************************************'
-    puts '****************    GAME OVER    ****************'
-    puts '*************************************************'
-    puts "****************  It's a Draw!  *****************"
-    puts '*************************************************'
-  end
+      puts "\n"
+      puts '*************************************************'
+      puts '**************** CONGRATULATIONS ****************'
+      puts '*************************************************'
+      puts "**************** #{name} Wins! *****************"
+      puts '*************************************************'
+    end
+
+    def draw_text
+      puts "\n"
+      puts '*************************************************'
+      puts '****************    GAME OVER    ****************'
+      puts '*************************************************'
+      puts "****************  It's a Draw!  *****************"
+      puts '*************************************************'
+    end
 
 end
 
