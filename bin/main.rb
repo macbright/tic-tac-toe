@@ -7,6 +7,7 @@ class GameInterface
         print "\n Starting a new game \n \n"
         game_instruction
         @board_this_game = GameBoard.new()
+        board_layout(@board_this_game.board)
         @player1 = Player.new()
         @player2 = Player.new()
         @current_player = @player1
@@ -98,8 +99,17 @@ class GameInterface
 
     end
 
-    private
-    
+
+
+    def board_layout(board)
+        puts " #{board[0][0]|| 1}  |  #{board[0][1] || 2}  |  #{board[0][2] || 3} "  
+        puts "----+-----+----" 
+        puts " #{board[1][0] || 4}  |  #{board[1][1] ||5}  |  #{board[1][2] ||6} " 
+        puts "----+-----+----"  
+        puts " #{board[2][0] ||7}  |  #{board[2][1] ||8}  |  #{board[2][2] ||9} "
+    end
+
+
     def move_and_check
         print "\n"
         if @board_this_game.move(@current_player.player_action, @current_player.mark) == "fail"
@@ -107,12 +117,16 @@ class GameInterface
             switch_player
             puts "\n That number is already taken! \n"
             puts " \n"
-            @board_this_game.board_layout(@board_this_game.board)
+            board_layout(@board_this_game.board)
             puts "\n Take another one... \n"   
         else
             @board_this_game.move(@current_player.player_action, @current_player.mark)
+            print board_layout(@board_this_game.board)
+            print "\n"
         end
     end
+
+    private
 
     def win_game
         check_horizontal_win(@board_this_game.board) if @win_already == 0
